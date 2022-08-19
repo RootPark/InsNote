@@ -4,6 +4,7 @@ import 'my_page.dart';
 import 'feed_page.dart';
 
 void main() => runApp(const MyApp());
+//late ScrollController _scrollController;
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage>{
       debugPrint('Bottom bar ${opened ? 'opened' : 'closed'}');
     });
     super.initState();
+    //_scrollController = ScrollController();
   }
 
   int _selectedIndex = 0;
@@ -65,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage>{
         automaticallyImplyLeading: false,
         title: Text('Inspiriation Note'),
       ),
+      resizeToAvoidBottomInset: true,//keyboard control
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
