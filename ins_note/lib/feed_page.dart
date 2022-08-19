@@ -88,7 +88,6 @@ class _FeedPageState extends State<FeedPage> {
                       ),
                       Text(
                         feedData[index].content,
-                        style: TextStyle(color: Colors.grey)
                       ),
                       Row(
                         children: [
@@ -99,6 +98,7 @@ class _FeedPageState extends State<FeedPage> {
                           )
                         ],
                       ),
+
                     ],
                   )
                 )
