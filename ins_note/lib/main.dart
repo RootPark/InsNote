@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+import 'my_page.dart';
+import 'feed_page.dart';
 
-void main() => runApp(const BaseExample());
+void main() => runApp(const MyApp());
 
-class BaseExample extends StatelessWidget {
-  const BaseExample({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,19 @@ class _MyHomePageState extends State<MyHomePage>{
     super.initState();
   }
 
+  int _selectedIndex = 0;
+
+  final List<Widget> _widgetOptions = <Widget>[
+    FeedPage(),
+    MyPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,20 +81,8 @@ class _MyHomePageState extends State<MyHomePage>{
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              "Place for your content",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ],
-        ),
+      body: SafeArea(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomBarWithSheet(
         controller: _bottomBarController,
@@ -99,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage>{
             fontSize: 10.0,
           ),
         ),
-        onSelectItem: (index) => debugPrint('$index'),
+        onSelectItem: (index) => _onItemTapped(index),
         sheetChild: Column(
           children: <Widget>[
             Padding(
@@ -161,10 +164,12 @@ class _MyHomePageState extends State<MyHomePage>{
           ],
         ),
         items: const [
-          BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
+
           //BottomBarWithSheetItem(icon: Icons.shopping_cart),
           //BottomBarWithSheetItem(icon: Icons.settings),
           BottomBarWithSheetItem(icon: Icons.settings),
+          BottomBarWithSheetItem(icon: Icons.favorite),
+
         ],
       ),
     );
