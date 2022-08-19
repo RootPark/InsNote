@@ -167,8 +167,8 @@ class _MyHomePageState extends State<MyHomePage>{
 
           //BottomBarWithSheetItem(icon: Icons.shopping_cart),
           //BottomBarWithSheetItem(icon: Icons.settings),
+          BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
           BottomBarWithSheetItem(icon: Icons.settings),
-          BottomBarWithSheetItem(icon: Icons.favorite),
 
         ],
       ),
