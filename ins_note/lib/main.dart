@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 
-void main() => runApp(const BaseExample());
+void main() => runApp(const MyApp());
 
-class BaseExample extends StatelessWidget {
-  const BaseExample({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
