@@ -161,10 +161,10 @@ class _MyHomePageState extends State<MyHomePage>{
           ],
         ),
         items: const [
-          BottomBarWithSheetItem(icon: Icons.people),
+          BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
           //BottomBarWithSheetItem(icon: Icons.shopping_cart),
           //BottomBarWithSheetItem(icon: Icons.settings),
-          BottomBarWithSheetItem(icon: Icons.favorite),
+          BottomBarWithSheetItem(icon: Icons.settings),
         ],
       ),
     );
