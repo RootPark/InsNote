@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         iconTheme: const IconThemeData(
-          color: Colors.blue,
+          color: Colors.amberAccent,
         ),
       ),
       home: const MyHomePage(),
@@ -58,28 +58,12 @@ class _MyHomePageState extends State<MyHomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[700],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: () => _bottomBarController.openSheet(),
-              child: const Text('Open sheet'),
-            ),
-            ElevatedButton(
-              onPressed: () => _bottomBarController.closeSheet(),
-              child: const Text('Close sheet'),
-            ),
-            ElevatedButton(
-              onPressed: () => _bottomBarController.toggleSheet(),
-              child: const Text('Toggle sheet'),
-            ),
-          ],
-        ),
+        title: Text('Inspiriation Note'),
       ),
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -90,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage>{
           mainButtonPosition: MainButtonPosition.middle,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
           ),
           itemIconColor: Colors.grey,
           itemTextStyle: TextStyle(
@@ -98,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage>{
             fontSize: 10.0,
           ),
           selectedItemTextStyle: TextStyle(
-            color: Colors.blue,
+            color: Colors.yellow,
             fontSize: 10.0,
           ),
         ),
@@ -165,8 +149,6 @@ class _MyHomePageState extends State<MyHomePage>{
         ),
         items: const [
 
-          //BottomBarWithSheetItem(icon: Icons.shopping_cart),
-          //BottomBarWithSheetItem(icon: Icons.settings),
           BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
           BottomBarWithSheetItem(icon: Icons.settings),
 
