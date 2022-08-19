@@ -31,17 +31,27 @@ class _FeedPageState extends State<FeedPage> {
   ];
 
   static List<String> feedLocation = [
-    'images/location.png',
-    'images/location.png',
-    'images/location.png',
-    'images/location.png',
-    'images/location.png',
-    'images/location.png',
-    'images/location.png',
+    '서울 성동구',
+    '서울 성동구',
+    '서울 성동구',
+    '서울 성동구',
+    '서울 성동구',
+    '서울 성동구',
+    '서울 성동구',
+  ];
+
+  static List<String> feedDate = [
+    '2022-08-19',
+    '2022-08-19',
+    '2022-08-19',
+    '2022-08-19',
+    '2022-08-19',
+    '2022-08-19',
+    '2022-08-19'
   ];
 
   final List<Feed> feedData = List.generate(feedLocation.length, (index) => 
-    Feed(feedTitle[index], feedContent[index], feedLocation[index]));
+    Feed(feedTitle[index], feedContent[index], feedLocation[index], feedDate[index]));
 
   @override
   Widget build(BuildContext context) {
@@ -49,20 +59,40 @@ class _FeedPageState extends State<FeedPage> {
       body: ListView.builder(
         itemCount: feedData.length,
         itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              title: Text(
-                feedData[index].title
-              ),
-              subtitle: Text(
-                feedData[index].content
-              ),
-              // leading: SizedBox(
-              //   height: 50,
-              //   width: 50,
-              //   child: Image.asset(feedData[index].location)
-              // ),
-            ),
+          return Column(
+            children: <Widget>[
+              Row(children: <Widget>[
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10.0, right: 20.0),
+                    child: Divider(
+                      color: Colors.black,
+                      height: 36,
+                    )
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Text(feedData[index].date)
+                ),
+              ]),
+              Row (children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        feedData[index].title,
+                        style: TextStyle(fontSize: 20)
+                      ),
+                      Text(feedData[index].content),
+                      Text(feedData[index].location),
+                    ],
+                  )
+                )
+              ],),
+            ],
           );
         }
       )
