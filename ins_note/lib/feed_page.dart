@@ -86,8 +86,19 @@ class _FeedPageState extends State<FeedPage> {
                         feedData[index].title,
                         style: TextStyle(fontSize: 20)
                       ),
-                      Text(feedData[index].content),
-                      Text(feedData[index].location),
+                      Text(
+                        feedData[index].content,
+                        style: TextStyle(color: Colors.grey)
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.place),
+                          Text(
+                            feedData[index].location,
+                            style: TextStyle(color: Colors.grey)
+                          )
+                        ],
+                      ),
                     ],
                   )
                 )
