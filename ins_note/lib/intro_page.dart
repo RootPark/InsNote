@@ -36,7 +36,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   Widget _buildFullscreenImage() {
     return Image.asset(
-      'assets/ins_note_main.png',
+      'assets/ins_note_logo.png',
       fit: BoxFit.cover,
       height: double.infinity,
       width: double.infinity,
@@ -92,17 +92,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
+          title: "당신이 어떤 사람이던 상관없어요",
           body:
-          "Download the Stockpile app and master the market with our mini-lesson.",
-          image: _buildImage('img2.jpg'),
+          "무슨일을 하던 당신이 문득 떠오른 생각들을 가장 효율적으로 남길 수 있어요.",
+          image: _buildImage('ins_note_main.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Kids and teens",
+          title: "태그, 키워드, 디테일",
           body:
-          "Kids and teens can track their stocks 24/7 and place trades that you approve.",
-          image: _buildImage('img3.jpg'),
+          "이 세가지만 기억하면 돼요\n지정해둔 태그를 고르고, 짧은 키워드를 적고, 간단한 디테일을 적어요.",
+          image: _buildImage('ins_note_main.png'),
+          decoration: pageDecoration,
+        ),PageViewModel(
+          title: "위젯을 활용해 완벽한 노트를 완성하세요",
+          body:
+          "위젯을 통해 빠르게 기록을 남길 수 있고, 적어둔 메모를 확인할 수 있어요.",
+          image: _buildImage('ins_note_main.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
