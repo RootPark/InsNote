@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+import 'intro_page.dart';
 import 'my_page.dart';
 import 'feed_page.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(Intro());
 //late ScrollController _scrollController;
 
 class MyApp extends StatelessWidget {
