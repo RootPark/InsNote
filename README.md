@@ -1,5 +1,5 @@
 # 영감일기
-## 당신의 아이디어를 넓혀주는 영감일기입니다.
+## 💡 당신의 아이디어를 넓혀주는 영감일기 💡
 <img width="968" alt="ins_note_main" src="https://user-images.githubusercontent.com/43375122/185776904-8ecbe472-3168-4c6c-8f22-5b129fe13994.png">
 
 ## 개발자
