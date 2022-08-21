@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage>{
       debugPrint('Bottom bar ${opened ? 'opened' : 'closed'}');
     });
     super.initState();
+
     //_scrollController = ScrollController();
   }
 
@@ -60,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.grey,
@@ -67,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage>{
         automaticallyImplyLeading: false,
         title: Text('Inspiriation Note'),
       ),
-      resizeToAvoidBottomInset: true,//keyboard control
+      resizeToAvoidBottomInset: false,//keyboard control
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
