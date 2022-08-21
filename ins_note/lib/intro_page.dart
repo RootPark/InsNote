@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-
 import 'main.dart';
 
 class Intro extends StatelessWidget {
@@ -15,7 +14,7 @@ class Intro extends StatelessWidget {
     return MaterialApp(
       title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.amber),
       home: OnBoardingPage(),
     );
   }
@@ -37,7 +36,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   Widget _buildFullscreenImage() {
     return Image.asset(
-      'assets/fullscreen.jpg',
+      'assets/ins_note_main.png',
       fit: BoxFit.cover,
       height: double.infinity,
       width: double.infinity,
@@ -69,7 +68,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
+            child: _buildImage('ins_note_main.png', 100),
           ),
         ),
       ),
@@ -78,7 +77,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         height: 60,
         child: ElevatedButton(
           child: const Text(
-            'Let\'s go right away!',
+            '이제 한번 시작해 볼까요?',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           onPressed: () => _onIntroEnd(context),
@@ -86,10 +85,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
       pages: [
         PageViewModel(
-          title: "Fractional shares",
+          title: "우리와 함께\n 당신의 영감의 순간을 기록해요",
           body:
-          "Instead of having to buy an entire share, invest any amount you want.",
-          image: _buildImage('img1.jpg'),
+          "가장 쉽고 빠르게 당신의 영감을 기록할 수 있을거에요.",
+          image: _buildImage('ins_note_main.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
