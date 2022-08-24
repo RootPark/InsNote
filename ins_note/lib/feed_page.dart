@@ -44,10 +44,10 @@ class _FeedPageState extends State<FeedPage> {
     '2022-08-19',
     '2022-08-19',
     '2022-08-19',
-    '2022-08-19',
-    '2022-08-19',
-    '2022-08-19',
-    '2022-08-19'
+    '2022-08-20',
+    '2022-08-20',
+    '2022-08-24',
+    '2022-08-29'
   ];
 
   final List<Feed> feedData = List.generate(feedLocation.length, (index) => 
@@ -64,17 +64,20 @@ class _FeedPageState extends State<FeedPage> {
               Row(children: <Widget>[
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(left: 10.0, right: 20.0),
+                    margin: EdgeInsets.only(left: 15.0, right: 20.0),
                     child: Divider(
                       color: Colors.black,
                       height: 36,
                     )
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 20),
-                  child: Text(feedData[index].date)
-                ),
+                Visibility(
+                  visible: index == 0 || feedData[index].date != feedData[index-1].date,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text(feedData[index].date)
+                  ),
+                )
               ]),
               Row (children: <Widget>[
                 Container(
@@ -82,23 +85,36 @@ class _FeedPageState extends State<FeedPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        feedData[index].title,
-                        style: TextStyle(fontSize: 20)
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          feedData[index].title,
+                          style: TextStyle(fontSize: 25)
+                        )
                       ),
-                      Text(
-                        feedData[index].content,
+                      Padding(
+                        padding: EdgeInsets.only(right: 20, bottom: 5),
+                        child: Text(
+                          feedData[index].content,
+                          style: TextStyle(fontSize: 17)
+                        )
                       ),
-                      Row(
-                        children: [
-                          Icon(Icons.place),
-                          Text(
-                            feedData[index].location,
-                            style: TextStyle(color: Colors.grey)
-                          )
-                        ],
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.place,
+                              color: Colors.grey,
+                              size: 13,
+                            ),
+                            Text(
+                              feedData[index].location,
+                              style: TextStyle(color: Colors.grey, fontSize: 13)
+                            )
+                          ],
+                        )
                       ),
-
                     ],
                   )
                 )
