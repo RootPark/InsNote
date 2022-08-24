@@ -77,17 +77,15 @@ flutter:
   fonts:
     - family: GmarketSans
       fonts:
-        - asset: assets/fonts/GmarketSansLight.otf
+        - asset: assets/font/GmarketSans/GmarketSansLight.otf
           weight: 300
-        - asset: assets/fonts/GmarketSansMedium.otf
+        - asset: assets/font/GmarketSans/GmarketSansMedium.otf
           weight: 500
-        - asset: assets/fonts/GmarketSansBold.otf
+        - asset: assets/font/GmarketSans/GmarketSansBold.otf
           weight: 700
-    - family: Trajan Pro
+    - family: RIDIBatang
       fonts:
-        - asset: fonts/TrajanPro.ttf
-        - asset: fonts/TrajanPro_Bold.ttf
-          weight: 700
+        - asset: assets/font/RIDIBatang.otf
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
