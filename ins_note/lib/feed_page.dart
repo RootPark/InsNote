@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/feed.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -50,8 +51,18 @@ class _FeedPageState extends State<FeedPage> {
     '2022-08-29'
   ];
 
+  static List<String> feedLink = [
+    'https://youtu.be/VCDWg0ljbFQ',
+    'https://youtu.be/bTtNV6hgDno',
+    'https://youtu.be/8-2AHSZ6Y68',
+    'https://www.instagram.com/d_.o.o._ng/',
+    'https://n.news.naver.com/mnews/article/092/0002266255?sid=105',
+    'https://map.naver.com/v5/entry/place/17901231?c=14141838.0216799,4517585.9045926,13,0,0,0,dh&placePath=%2Fhome&entry=plt',
+    'https://ko.wikipedia.org/wiki/시추'
+  ];
+
   final List<Feed> feedData = List.generate(feedLocation.length, (index) => 
-    Feed(feedTitle[index], feedContent[index], feedLocation[index], feedDate[index]));
+    Feed(feedTitle[index], feedContent[index], feedLocation[index], feedDate[index], feedLink[index]));
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +122,18 @@ class _FeedPageState extends State<FeedPage> {
                             Text(
                               feedData[index].location,
                               style: TextStyle(color: Colors.grey, fontSize: 13)
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.attach_file),
+                              color: Colors.grey,
+                              onPressed: () async {
+                                if(await canLaunch(feedData[index].link)){
+                                  await launch(feedData[index].link);
+                                  // forceWebView: false, forceSafariVC: false
+                                } else {
+                                  throw 'Could not launch ${feedData[index].link}';
+                                }
+                              }
                             )
                           ],
                         )
