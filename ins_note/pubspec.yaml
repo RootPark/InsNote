@@ -63,6 +63,8 @@ flutter:
   assets:
     - assets/ins_note_main.png
     - assets/ins_note_logo.png
+    - assets/jobs.png
+    - assets/tags.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
