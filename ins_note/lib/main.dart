@@ -78,6 +78,9 @@ class _MyHomePageState extends State<MyHomePage>{
           mainButtonPosition: MainButtonPosition.middle,
           decoration: BoxDecoration(
             color: Colors.white,
+            boxShadow: [
+              BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+            ],
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
           ),
           itemIconColor: Colors.grey,
