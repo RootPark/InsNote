@@ -61,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.grey,
@@ -97,6 +96,8 @@ class _MyHomePageState extends State<MyHomePage>{
             Padding(
               child:
               TextFormField(
+                maxLines: 1,
+                maxLength: 30,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.lightbulb),
                     hintText: 'Key Word',
@@ -125,11 +126,13 @@ class _MyHomePageState extends State<MyHomePage>{
             Padding(
               child:
               TextFormField(
+                maxLines: 5,
+                maxLength: 100,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.notes_outlined),
                     hintText: 'Detail Note',
                     labelText: 'Detail Note',
-
+                    contentPadding: EdgeInsets.symmetric(vertical: 30),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
@@ -153,10 +156,8 @@ class _MyHomePageState extends State<MyHomePage>{
           ],
         ),
         items: const [
-
           BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
           BottomBarWithSheetItem(icon: Icons.settings),
-
         ],
       ),
     );
