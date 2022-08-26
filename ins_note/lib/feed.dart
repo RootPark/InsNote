@@ -4,6 +4,7 @@ class Feed {
   final String content;
   final String location;
   final String date;
+  final String link;
 
-  Feed(this.title, this.content, this.location, this.date);
+  Feed(this.title, this.content, this.location, this.date, this.link);
 }
