@@ -126,7 +126,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "이제 태그를 지정해볼까요?",
           body: "지정한 태그는 언제든지 변경하고 추가할 수 있어요.",
-          image: _buildImage('img2.jpg'),
+          image: _buildImage('tags.jpg'),
           footer: ElevatedButton(
             onPressed: () {
               introKey.currentState?.animateScroll(0);
