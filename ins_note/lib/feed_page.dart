@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '/feed.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key}) : super(key: key);
@@ -127,8 +127,8 @@ class _FeedPageState extends State<FeedPage> {
                               icon: Icon(Icons.attach_file),
                               color: Colors.grey,
                               onPressed: () async {
-                                if(await canLaunch(feedData[index].link)){
-                                  await launch(feedData[index].link);
+                                if(await canLaunchUrlString(feedData[index].link)){
+                                  await launchUrlString(feedData[index].link);
                                   // forceWebView: false, forceSafariVC: false
                                 } else {
                                   throw 'Could not launch ${feedData[index].link}';
