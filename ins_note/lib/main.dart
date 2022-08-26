@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         iconTheme: const IconThemeData(
-          color: Colors.amberAccent,
+          color: Colors.amber,
         ),
       ),
       home: const MyHomePage(),
@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage>{
       debugPrint('Bottom bar ${opened ? 'opened' : 'closed'}');
     });
     super.initState();
+
     //_scrollController = ScrollController();
   }
 
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage>{
         automaticallyImplyLeading: false,
         title: Text('Inspiriation Note'),
       ),
-      resizeToAvoidBottomInset: true,//keyboard control
+      resizeToAvoidBottomInset: false,//keyboard control
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -78,6 +79,9 @@ class _MyHomePageState extends State<MyHomePage>{
           mainButtonPosition: MainButtonPosition.middle,
           decoration: BoxDecoration(
             color: Colors.white,
+            boxShadow: [
+              BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+            ],
             borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
           ),
           itemIconColor: Colors.grey,
@@ -96,6 +100,8 @@ class _MyHomePageState extends State<MyHomePage>{
             Padding(
               child:
               TextFormField(
+                maxLines: 1,
+                maxLength: 30,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.lightbulb),
                     hintText: 'Key Word',
@@ -124,11 +130,13 @@ class _MyHomePageState extends State<MyHomePage>{
             Padding(
               child:
               TextFormField(
+                maxLines: 5,
+                maxLength: 100,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.notes_outlined),
                     hintText: 'Detail Note',
                     labelText: 'Detail Note',
-
+                    contentPadding: EdgeInsets.symmetric(vertical: 30),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
@@ -152,10 +160,8 @@ class _MyHomePageState extends State<MyHomePage>{
           ],
         ),
         items: const [
-
           BottomBarWithSheetItem(icon: Icons.sticky_note_2_outlined),
           BottomBarWithSheetItem(icon: Icons.settings),
-
         ],
       ),
     );
