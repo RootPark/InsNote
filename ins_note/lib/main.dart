@@ -3,6 +3,10 @@ import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 import 'intro_page.dart';
 import 'my_page.dart';
 import 'feed_page.dart';
+import 'package:material_tag_editor/tag_editor.dart';
+import 'package:flutter/services.dart';
+
+
 
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
