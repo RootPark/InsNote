@@ -107,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage>{
                     icon: Icon(Icons.lightbulb),
                     hintText: 'Key Word',
                     labelText: 'Key Word',
-
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
