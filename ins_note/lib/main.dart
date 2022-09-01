@@ -137,7 +137,6 @@ class _MyHomePageState extends State<MyHomePage>{
                     icon: Icon(Icons.notes_outlined),
                     hintText: 'Detail Note',
                     labelText: 'Detail Note',
-                    contentPadding: EdgeInsets.symmetric(vertical: 30),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
