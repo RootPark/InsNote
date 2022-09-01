@@ -95,7 +95,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "당신이 어떤 사람이던 상관없어요",
           body:
           "무슨일을 하던 당신이 문득 떠오른 생각들을 가장 효율적으로 남길 수 있어요.",
-          image: _buildImage('jobs.png'),
+          image: _buildImage('jobs.png',150),
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -126,7 +126,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "이제 태그를 지정해볼까요?",
           body: "지정한 태그는 언제든지 변경하고 추가할 수 있어요.",
-          image: _buildImage('tags.png'),
+          image: _buildImage('tags.png',150),
           footer: ElevatedButton(
             onPressed: () {
               introKey.currentState?.animateScroll(0);
