@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:material_tag_editor/tag_editor.dart';
 import 'main.dart';
 
 class Intro extends StatelessWidget {
@@ -27,6 +28,16 @@ class OnBoardingPage extends StatefulWidget {
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
+
+  List<String> _values =[];
+  final FocusNode _focusNode = FocusNode();
+  final TextEditingController _textEditingController = TextEditingController();
+
+  _onDelete(index) {
+    setState(() {
+      _values.removeAt(index);
+    });
+  }
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
@@ -125,23 +136,49 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
         PageViewModel(
           title: "이제 태그를 지정해볼까요?",
-          body: "지정한 태그는 언제든지 변경하고 추가할 수 있어요.",
-          image: _buildImage('tags.png',150),
-          /*footer: ElevatedButton(
-            onPressed: () {
-              introKey.currentState?.animateScroll(0);
-            },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+          body: "Hello",
+          /*bodyWidget: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: ListView(
+                children: <Widget>[
+                  TagEditor(
+                      length: _values.length,
+                      controller: _textEditingController,
+                      focusNode: _focusNode,
+                      delimiters: [',',' '],
+                      hasAddButton: true,
+                      resetTextOnSubmitted: true,
+                      textStyle: TextStyle(color: Colors.black),
+                      onSubmitted: (outstandingValue){
+                        setState(() {
+                          _values.add(outstandingValue);
+                        });
+                      },
+                    inputDecoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '태그를 입력하세요',
+                    ),
+                    onTagChanged: (newValue) {
+                      setState(() {
+                        _values.add(newValue);
+                      });
+                    },
+                      tagBuilder: (context, index) => _Chip(
+                        index: index,
+                        label: _values[index],
+                        onDeleted: _onDelete,
+                      ),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.deny(RegExp(r'[/\\]'))
+                      ],
+                  ),
+                  const Divider(),
+                ],
               ),
             ),
           ),*/
+
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -194,6 +231,34 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
+    );
+  }
+}
+
+
+class _Chip extends StatelessWidget {
+  const _Chip({
+    required this.label,
+    required this.onDeleted,
+    required this.index,
+  });
+
+  final String label;
+  final ValueChanged<int> onDeleted;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Chip(
+      labelPadding: const EdgeInsets.only(left: 8.0),
+      label: Text(label),
+      deleteIcon: const Icon(
+        Icons.close,
+        size: 18,
+      ),
+      onDeleted: () {
+        onDeleted(index);
+      },
     );
   }
 }
