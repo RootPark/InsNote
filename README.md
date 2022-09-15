@@ -3,7 +3,9 @@
 <img width="968" alt="ins_note_main" src="https://user-images.githubusercontent.com/43375122/185776904-8ecbe472-3168-4c6c-8f22-5b129fe13994.png">
 
 ## 개발자
+ ### front-end
  - 박근원 <a href="https://github.com/RootPark" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
  - 이지원 <a href="https://github.com/Rudolf0328" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
+ ### back-end
  - 강희남 <a href="https://github.com/heenamkang" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
  - 김태훈 <a href="https://github.com/twodf78" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
