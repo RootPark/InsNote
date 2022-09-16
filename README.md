@@ -10,6 +10,7 @@
  - 강희남 <a href="https://github.com/heenamkang" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
  - 김태훈 <a href="https://github.com/twodf78" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white"/></a>
 
+## About App
 
 ![영감일기_eos_발표 001](https://user-images.githubusercontent.com/43375122/190562690-23c93fb6-e94d-4dca-87a8-ea7ac10f3645.jpeg)
 ![영감일기_eos_발표 002](https://user-images.githubusercontent.com/43375122/190562703-5f7e6962-66f8-4dd9-bb3e-3d568b17720c.jpeg)
