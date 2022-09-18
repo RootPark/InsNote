@@ -211,9 +211,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                     return Container(
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(20.0),
+                                          Radius.circular(13.0),
                                         ),
-                                        color: Color.fromARGB(255, 74, 137, 92),
+                                        color: Colors.amber,
+                                        //TODO 랜덤 컬러 지정
                                       ),
                                       margin: const EdgeInsets.symmetric(
                                           horizontal: 5.0),
@@ -262,13 +263,22 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
-                  const Color.fromARGB(255, 74, 137, 92),
+                  const Color.fromARGB(255, 34, 34, 34),
                 ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+
+                  )
+                )
               ),
               onPressed: () {
                 _controller.clearTags();
               },
-              child: const Text('CLEAR TAGS'),
+              child: const Text('CLEAR TAGS',
+              style: TextStyle(
+                color: Colors.amber,
+              ),),
             ),
             ],
           ),
