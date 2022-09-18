@@ -5,6 +5,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'main.dart';
+import 'dart:math';
 
 class Intro extends StatelessWidget {
   @override
@@ -30,6 +31,7 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
+  final random = Random();
   // textfieldtags widget
   late double _distanceToField;
   late TextfieldTagsController _controller;
@@ -187,18 +189,24 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                               color: Color.fromARGB(255, 74, 137, 92),
                               width: 3.0,
                             ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
                           focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color.fromARGB(255, 74, 137, 92),
+                              color: Colors.amber,
                               width: 3.0,
                             ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
-                          helperText: 'Enter language...',
+                          /*helperText: 'Enter language...',
                           helperStyle: const TextStyle(
                             color: Color.fromARGB(255, 74, 137, 92),
-                          ),
-                          hintText: _controller.hasTags ? '' : "Enter tag...",
+                          ),*/
+                          hintText: _controller.hasTags ? '' : "태그를 입력하세요...",
                           errorText: error,
                           prefixIconConstraints:
                               BoxConstraints(maxWidth: _distanceToField * 0.74),
@@ -211,9 +219,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                     return Container(
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.all(
-                                          Radius.circular(13.0),
+                                          Radius.circular(12.0),
                                         ),
-                                        color: Colors.amber,
+                                        color: Colors.amber
                                         //TODO 랜덤 컬러 지정
                                       ),
                                       margin: const EdgeInsets.symmetric(
