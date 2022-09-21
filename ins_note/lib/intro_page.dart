@@ -23,6 +23,7 @@ class Intro extends StatelessWidget {
   }
 }
 
+
 class OnBoardingPage extends StatefulWidget {
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
@@ -31,10 +32,12 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
-  final random = Random();
   // textfieldtags widget
   late double _distanceToField;
   late TextfieldTagsController _controller;
+
+  List<Color> colors = [Colors.redAccent, Colors.teal, Colors.green, Colors.grey];
+  Random random = Random();
 
   @override
   void didChangeDependencies() {
@@ -70,6 +73,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     );
   }
 
+
   Widget _buildFullscreenImage() {
     return Image.asset(
       'assets/ins_note_logo.png',
@@ -84,9 +88,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return Image.asset('assets/$assetName', width: width);
   }
 
+
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 19.0);
+
 
     const pageDecoration = const PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
@@ -216,13 +222,15 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
                                       children: tags.map((String tag) {
+                                        int cindex = random.nextInt(colors.length);
+                                        Color tempcol = colors[cindex];
                                     return Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(12.0),
                                         ),
-                                        color: Colors.amber
-                                        //TODO 랜덤 컬러 지정
+                                        //TODO 랜덤 컬러 설정
+                                        color: tempcol,
                                       ),
                                       margin: const EdgeInsets.symmetric(
                                           horizontal: 5.0),
@@ -248,7 +256,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                               Icons.cancel,
                                               size: 14.0,
                                               color: Color.fromARGB(
-                                                  255, 233, 233, 233),
+                                                  255, 33, 33, 33),
                                             ),
                                             onTap: () {
                                               onTagDelete(tag);
