@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '/feed.dart';
 
@@ -71,6 +72,7 @@ class _FeedPageState extends State<FeedPage> {
         itemCount: feedData.length,
         itemBuilder: (context, index) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Row(children: <Widget>[
                 Expanded(
@@ -90,9 +92,10 @@ class _FeedPageState extends State<FeedPage> {
                   ),
                 )
               ]),
-              Row (children: <Widget>[
+              Column (children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(left: 20),
+                  // color: Colors.red,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -110,34 +113,43 @@ class _FeedPageState extends State<FeedPage> {
                           style: TextStyle(fontSize: 17)
                         )
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.place,
-                              color: Colors.grey,
-                              size: 13,
-                            ),
-                            Text(
-                              feedData[index].location,
-                              style: TextStyle(color: Colors.grey, fontSize: 13)
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.attach_file),
-                              color: Colors.grey,
-                              onPressed: () async {
-                                if(await canLaunchUrlString(feedData[index].link)){
-                                  await launchUrlString(feedData[index].link);
-                                  // forceWebView: false, forceSafariVC: false
-                                } else {
-                                  throw 'Could not launch ${feedData[index].link}';
-                                }
-                              }
-                            )
-                          ],
+                      Container(
+                          padding: EdgeInsets.only(right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                  Icon(
+                                    Icons.place,
+                                    color: Colors.grey,
+                                    size: 13,
+                                  ),
+                                  Text(
+                                    feedData[index].location,
+                                    style: TextStyle(color: Colors.grey, fontSize: 13)
+                                  ),
+                                ],)
+                              ),
+                              Container(
+                                child: IconButton(
+                                  icon: Icon(Icons.attach_file),
+                                  color: Colors.grey,
+                                  onPressed: () async {
+                                    if(await canLaunch(feedData[index].link)){
+                                      await launch(feedData[index].link, forceWebView: false, forceSafariVC: false);
+                                      // forceWebView: false, forceSafariVC: false
+                                      // canLaunchUrlString, launchUrlString
+                                    } else {
+                                      throw 'Could not launch ${feedData[index].link}';
+                                    }
+                                  }
+                                )
+                              )
+                            ],
+                          )
                         )
-                      ),
                     ],
                   )
                 )
