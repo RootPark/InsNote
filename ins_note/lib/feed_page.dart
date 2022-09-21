@@ -52,7 +52,27 @@ class _FeedPageState extends State<FeedPage> {
     '2022-08-29'
   ];
 
-  static List<String> feedLink = [
+  static List<String> feedLink1 = [
+    'https://youtu.be/VCDWg0ljbFQ',
+    'https://youtu.be/bTtNV6hgDno',
+    'https://youtu.be/8-2AHSZ6Y68',
+    'https://www.instagram.com/d_.o.o._ng/',
+    'https://n.news.naver.com/mnews/article/092/0002266255?sid=105',
+    'https://map.naver.com/v5/entry/place/17901231?c=14141838.0216799,4517585.9045926,13,0,0,0,dh&placePath=%2Fhome&entry=plt',
+    'https://ko.wikipedia.org/wiki/시추'
+  ];
+
+   static List<String> feedLink2 = [
+    'https://youtu.be/VCDWg0ljbFQ',
+    'https://youtu.be/bTtNV6hgDno',
+    'https://youtu.be/8-2AHSZ6Y68',
+    'https://www.instagram.com/d_.o.o._ng/',
+    'https://n.news.naver.com/mnews/article/092/0002266255?sid=105',
+    'https://map.naver.com/v5/entry/place/17901231?c=14141838.0216799,4517585.9045926,13,0,0,0,dh&placePath=%2Fhome&entry=plt',
+    'https://ko.wikipedia.org/wiki/시추'
+  ];
+
+   static List<String> feedLink3 = [
     'https://youtu.be/VCDWg0ljbFQ',
     'https://youtu.be/bTtNV6hgDno',
     'https://youtu.be/8-2AHSZ6Y68',
@@ -63,7 +83,7 @@ class _FeedPageState extends State<FeedPage> {
   ];
 
   final List<Feed> feedData = List.generate(feedLocation.length, (index) => 
-    Feed(feedTitle[index], feedContent[index], feedLocation[index], feedDate[index], feedLink[index]));
+    Feed(feedTitle[index], feedContent[index], feedLocation[index], feedDate[index], feedLink1[index], feedLink2[index], feedLink3[index]));
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +115,6 @@ class _FeedPageState extends State<FeedPage> {
               Column (children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(left: 20),
-                  // color: Colors.red,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -118,35 +137,61 @@ class _FeedPageState extends State<FeedPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                  Icon(
-                                    Icons.place,
-                                    color: Colors.grey,
-                                    size: 13,
-                                  ),
-                                  Text(
-                                    feedData[index].location,
-                                    style: TextStyle(color: Colors.grey, fontSize: 13)
-                                  ),
-                                ],)
-                              ),
-                              Container(
-                                child: IconButton(
-                                  icon: Icon(Icons.attach_file),
+                              Row(
+                                children: [
+                                Icon(
+                                  Icons.place,
                                   color: Colors.grey,
-                                  onPressed: () async {
-                                    if(await canLaunch(feedData[index].link)){
-                                      await launch(feedData[index].link, forceWebView: false, forceSafariVC: false);
-                                      // forceWebView: false, forceSafariVC: false
-                                      // canLaunchUrlString, launchUrlString
-                                    } else {
-                                      throw 'Could not launch ${feedData[index].link}';
+                                  // size: 13,
+                                ),
+                                Text(
+                                  feedData[index].location,
+                                  style: TextStyle(color: Colors.grey, fontSize: 13)
+                                ),
+                              ],),
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.attach_file),
+                                    color: Colors.grey,
+                                    onPressed: () async {
+                                      if(await canLaunch(feedData[index].link1)){
+                                        await launch(feedData[index].link1, forceWebView: false, forceSafariVC: false);
+                                        // forceWebView: false, forceSafariVC: false
+                                        // canLaunchUrlString, launchUrlString
+                                      } else {
+                                        throw 'Could not launch ${feedData[index].link1}';
+                                      }
                                     }
-                                  }
-                                )
-                              )
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.attach_file),
+                                    color: Colors.grey,
+                                    onPressed: () async {
+                                      if(await canLaunch(feedData[index].link2)){
+                                        await launch(feedData[index].link2, forceWebView: false, forceSafariVC: false);
+                                        // forceWebView: false, forceSafariVC: false
+                                        // canLaunchUrlString, launchUrlString
+                                      } else {
+                                        throw 'Could not launch ${feedData[index].link2}';
+                                      }
+                                    }
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.attach_file),
+                                    color: Colors.grey,
+                                    onPressed: () async {
+                                      if(await canLaunch(feedData[index].link3)){
+                                        await launch(feedData[index].link3, forceWebView: false, forceSafariVC: false);
+                                        // forceWebView: false, forceSafariVC: false
+                                        // canLaunchUrlString, launchUrlString
+                                      } else {
+                                        throw 'Could not launch ${feedData[index].link3}';
+                                      }
+                                    }
+                                  )
+                                ]
+                              )                          
                             ],
                           )
                         )
@@ -160,20 +205,4 @@ class _FeedPageState extends State<FeedPage> {
       )
     );
   }
-
-  // _getListData() {
-  //   List<Widget> widgets = [];
-  //   for (int i = 0; i < 100; i++) {
-  //     widgets.add(GestureDetector(
-  //       child: Padding(
-  //         padding: EdgeInsets.all(10.0), 
-  //         child: Text("Row $i")
-  //       ),
-  //       onTap: () {
-  //         // print("row $i tapped");
-  //       }
-  //     ));
-  //   }
-  //   return widgets;
-  // }
 }
