@@ -171,14 +171,6 @@ class _FeedPageState extends State<FeedPage> {
             }
           });
     }
-    // if
-    // switch (link) {
-    //   case '':
-    //   case 'ko':
-    //   return const Text('안녕하세요');
-    //   default:
-    //   return const Text('Hello');
-    // }
   }
 
   @override
