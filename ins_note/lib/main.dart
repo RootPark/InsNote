@@ -103,6 +103,13 @@ class _MyHomePageState extends State<MyHomePage>{
         sheetChild: Column(
           children: <Widget>[
             Padding(
+                child: TextFormField(
+                  //TODO Tag 추가
+                ),
+                padding:EdgeInsets.zero
+
+            ),
+            Padding(
               child:
               TextFormField(
                 maxLines: 1,
