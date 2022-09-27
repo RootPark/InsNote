@@ -106,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage>{
         sheetChild: Column(
           children: <Widget>[
             Padding(
+              //TODO fix taglist error
                 child: FilterListWidget<User>(
                   themeData: FilterListThemeData(context),
                   hideSelectedTextCount: true,
