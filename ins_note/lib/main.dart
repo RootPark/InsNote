@@ -5,7 +5,7 @@ import 'my_page.dart';
 import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
-
+import 'package:filter_list/filter_list.dart';
 
 
 void main() => runApp(Intro());
@@ -40,6 +40,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>{
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
+
+  List<User>? selectedUserList = [];
 
   @override
   void initState(){
@@ -103,6 +105,45 @@ class _MyHomePageState extends State<MyHomePage>{
         sheetChild: Column(
           children: <Widget>[
             Padding(
+              //TODO fix taglist error
+                child: FilterListWidget<User>(
+                  themeData: FilterListThemeData(context),
+                  hideSelectedTextCount: true,
+                  listData: userList,
+                  selectedListData: selectedUserList,
+                  onApplyButtonClick: (list) {
+                    Navigator.pop(context, list);
+                  },
+                  choiceChipLabel: (item) {
+                    /// Used to print text on chip
+                    return item!.name;
+                  },
+                  // choiceChipBuilder: (context, item, isSelected) {
+                  //   return Container(
+                  //     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  //     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  //     decoration: BoxDecoration(
+                  //         border: Border.all(
+                  //       color: isSelected! ? Colors.blue[300]! : Colors.grey[300]!,
+                  //     )),
+                  //     child: Text(item.name),
+                  //   );
+                  // },
+                  validateSelectedItem: (list, val) {
+                    ///  identify if item is selected or not
+                    return list!.contains(val);
+                  },
+                  onItemSearch: (user, query) {
+                    /// When search query change in search bar then this method will be called
+                    ///
+                    /// Check if items contains query
+                    return user.name!.toLowerCase().contains(query.toLowerCase());
+                  },
+                ),
+                padding:EdgeInsets.zero
+
+            ),
+            Padding(
               child:
               TextFormField(
                 maxLines: 1,
@@ -140,7 +181,6 @@ class _MyHomePageState extends State<MyHomePage>{
                     icon: Icon(Icons.notes_outlined),
                     hintText: 'Detail Note',
                     labelText: 'Detail Note',
-                    contentPadding: EdgeInsets.symmetric(vertical: 30),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
@@ -171,3 +211,14 @@ class _MyHomePageState extends State<MyHomePage>{
     );
   }
 }
+
+class User {
+  final String? name;
+  final String? avatar;
+  User({this.name, this.avatar});
+}
+
+List<User> userList = [
+  User(name: "사업"),
+  User(name: "공부"),
+];
