@@ -2,7 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:material_tag_editor/tag_editor.dart';
+import 'package:textfield_tags/textfield_tags.dart';
 import 'main.dart';
+import 'dart:math';
 
 class Intro extends StatelessWidget {
   @override
@@ -20,6 +23,7 @@ class Intro extends StatelessWidget {
   }
 }
 
+
 class OnBoardingPage extends StatefulWidget {
   @override
   _OnBoardingPageState createState() => _OnBoardingPageState();
@@ -28,11 +32,47 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
 
+  // textfieldtags widget
+  late double _distanceToField;
+  late TextfieldTagsController _controller;
+
+  List<Color> colors = [Colors.redAccent, Colors.teal, Colors.green, Colors.grey];
+  Random random = Random();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _distanceToField = MediaQuery.of(context).size.width;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextfieldTagsController();
+  }
+
+  List<String> _values =[];
+  final FocusNode _focusNode = FocusNode();
+  final TextEditingController _textEditingController = TextEditingController();
+
+  _onDelete(index) {
+    setState(() {
+      _values.removeAt(index);
+    });
+  }
+
   void _onIntroEnd(context) {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => MyApp()),
     );
   }
+
 
   Widget _buildFullscreenImage() {
     return Image.asset(
@@ -48,9 +88,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     return Image.asset('assets/$assetName', width: width);
   }
 
+
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 19.0);
+
 
     const pageDecoration = const PageDecoration(
       titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
@@ -95,7 +137,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "당신이 어떤 사람이던 상관없어요",
           body:
           "무슨일을 하던 당신이 문득 떠오른 생각들을 가장 효율적으로 남길 수 있어요.",
-          image: _buildImage('jobs.png'),
+          image: _buildImage('jobs.png',150),
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -125,23 +167,139 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
         PageViewModel(
           title: "이제 태그를 지정해볼까요?",
-          body: "지정한 태그는 언제든지 변경하고 추가할 수 있어요.",
-          image: _buildImage('tags.png'),
-          footer: ElevatedButton(
-            onPressed: () {
-              introKey.currentState?.animateScroll(0);
-            },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+          bodyWidget: Column(
+            children: [
+              TextFieldTags(
+              textfieldTagsController: _controller,
+              textSeparators: const [' ', ','],
+              letterCase: LetterCase.normal,
+              // validator: (String tag) {
+              //     if (tag == 'php') {
+              //       return 'No, please just no';
+              //     } else if (_controller.getTags.contains(tag)) {
+              //       return 'you already entered that';
+              //     }
+              //     return null;
+              // },
+              inputfieldBuilder: (context, tec, fn, error, onChanged, onSubmitted) {
+                return ((context, sc, tags, onTagDelete) {
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextField(
+                        controller: tec,
+                        focusNode: fn,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(255, 74, 137, 92),
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.amber,
+                              width: 3.0,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          /*helperText: 'Enter language...',
+                          helperStyle: const TextStyle(
+                            color: Color.fromARGB(255, 74, 137, 92),
+                          ),*/
+                          hintText: _controller.hasTags ? '' : "태그를 입력하세요...",
+                          errorText: error,
+                          prefixIconConstraints:
+                              BoxConstraints(maxWidth: _distanceToField * 0.74),
+                          prefixIcon: tags.isNotEmpty
+                              ? SingleChildScrollView(
+                                  controller: sc,
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                      children: tags.map((String tag) {
+                                        int cindex = random.nextInt(colors.length);
+                                        Color tempcol = colors[cindex];
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(12.0),
+                                        ),
+                                        //TODO 랜덤 컬러 설정
+                                        color: tempcol,
+                                      ),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 5.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0, vertical: 5.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          InkWell(
+                                            child: Text(
+                                              '#$tag',
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            onTap: () {
+                                              print("$tag selected");
+                                            },
+                                          ),
+                                          const SizedBox(width: 4.0),
+                                          InkWell(
+                                            child: const Icon(
+                                              Icons.cancel,
+                                              size: 14.0,
+                                              color: Color.fromARGB(
+                                                  255, 33, 33, 33),
+                                            ),
+                                            onTap: () {
+                                              onTagDelete(tag);
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  }).toList()),
+                                )
+                              : null,
+                        ),
+                        onChanged: onChanged,
+                        onSubmitted: onSubmitted,
+                  ));
+
+                });
+              }
               ),
+              ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color.fromARGB(255, 34, 34, 34),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+
+                  )
+                )
+              ),
+              onPressed: () {
+                _controller.clearTags();
+              },
+              child: const Text('CLEAR TAGS',
+              style: TextStyle(
+                color: Colors.amber,
+              ),),
             ),
+            ],
           ),
+          image: _buildImage('tags.png',150),
+
           decoration: pageDecoration,
         ),
         PageViewModel(
@@ -194,6 +352,34 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
       ),
+    );
+  }
+}
+
+
+class _Chip extends StatelessWidget {
+  const _Chip({
+    required this.label,
+    required this.onDeleted,
+    required this.index,
+  });
+
+  final String label;
+  final ValueChanged<int> onDeleted;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Chip(
+      labelPadding: const EdgeInsets.only(left: 8.0),
+      label: Text(label),
+      deleteIcon: const Icon(
+        Icons.close,
+        size: 18,
+      ),
+      onDeleted: () {
+        onDeleted(index);
+      },
     );
   }
 }
