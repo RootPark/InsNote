@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:filter_list/filter_list.dart';
 
 
-
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
 
