@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-const port = process.env.PORT || 22;
+const port = process.env.PORT || 8080;
 
 // const server = https.createServer(app);
 // morgan : 로그를 좀 더 예쁘게 찍어주는 라이브러리
@@ -52,8 +52,8 @@ app.get((req, res) => {
 // };
 var httpServer = http.createServer(app);
 // var httpsServer = https.createServer(options, app);
-httpServer.listen(22, () => {
-    console.log(`server is listening at 22`);
+httpServer.listen(8080, () => {
+    console.log(`server is listening at 8080`);
 });
 // httpsServer.listen(port, () => {
 //     console.log(`server is listening at ${process.env.HOST}`);
