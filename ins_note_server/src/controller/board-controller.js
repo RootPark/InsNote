@@ -13,13 +13,13 @@ const header = {
 };
 
 const host = [
-    "https://34.221.63.195",
-    "https://34.221.63.195:443",
-    "http://34.221.63.195",
-    "http://34.221.63.195:443",
+    "https://3.34.143.144",
+    "https://3.34.143.144:443",
+    "http://3.34.143.144",
+    "http://3.34.143.144:443",
 ];
 
-router.get("/feed",  async (req, res, next) => {
+router.get("/feed", async (req, res, next) => {
     console.log(req.headers.origin);
     if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin;
 
@@ -28,7 +28,7 @@ router.get("/feed",  async (req, res, next) => {
     return res.header(header).json(rows);
 });
 
-router.get("/tag",  async (req, res, next) => {
+router.get("/tag", async (req, res, next) => {
     console.log(req.headers.origin);
     if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin;
 
