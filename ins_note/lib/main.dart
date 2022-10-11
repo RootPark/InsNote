@@ -106,7 +106,6 @@ class _MyHomePageState extends State<MyHomePage>{
           children: <Widget>[
             Padding(
               //TODO fix taglist error
-              //findout error,,, 
                 child: FilterListWidget<User>(
                   themeData: FilterListThemeData(context),
                   hideSelectedTextCount: true,
