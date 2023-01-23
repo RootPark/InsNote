@@ -33,6 +33,7 @@ dependencies:
   url_launcher: ^6.1.5
   material_tag_editor: ^0.1.2
   textfield_tags: ^2.0.2
+  http: ^0.13.5
   filter_list: ^1.0.2
   #random_color: ^1.0.5
 
@@ -70,6 +71,7 @@ flutter:
     - assets/ins_note_logo.png
     - assets/jobs.png
     - assets/tags.png
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
