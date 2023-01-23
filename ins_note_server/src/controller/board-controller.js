@@ -33,7 +33,7 @@ router.get("/feed", async (req, res, next) => {
 
 router.get("/tag", async (req, res, next) => {
     console.log(req.headers.origin);
-    if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin; //Q.이게 뭔지 파악
+    if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin;
 
     params.id = req.query.id;
     let rows = await service.getTag(params, res, next);
