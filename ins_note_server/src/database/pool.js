@@ -1,7 +1,7 @@
-import { createPool } from "mysql2";
-import mysql from "mysql2/promise";
+import { createPool } from "mysql2"; 
+import mysql from "mysql2/promise"; 
 
-const pool = mysql.createPool({
+const pool = mysql.createPool({ 
     host: "localhost",
     port: 3306,
     user: "root",
@@ -9,4 +9,4 @@ const pool = mysql.createPool({
     database: "insnote", // db 이름
 });
 
-export default pool;
+export default pool; 
