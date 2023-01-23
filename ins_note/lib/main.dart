@@ -5,7 +5,6 @@ import 'my_page.dart';
 import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
-import 'package:filter_list/filter_list.dart';
 
 
 void main() => runApp(Intro());
