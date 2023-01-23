@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 네이버 로그인 API -->
+<resources>
+    <string name="client_id">{Client ID}</string>
+    <string name="client_secret">{Client Secret}</string>
+    <string name="client_name">{your_app_name}</string>
+</resources>

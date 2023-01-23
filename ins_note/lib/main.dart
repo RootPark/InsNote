@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+import 'package:ins_note/login_page.dart';
 import 'intro_page.dart';
 import 'my_page.dart';
 import 'feed_page.dart';
