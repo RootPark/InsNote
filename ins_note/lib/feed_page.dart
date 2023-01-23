@@ -81,6 +81,8 @@ class _FeedPageState extends State<FeedPage> {
     ''
   ];
 
+  //여기에서 바로 보여줄려면, _onIntroEnd()함수의 navigator를 통해서 피드페이지로 이동
+  //어떤 부분때문에 피드페이지로 이동하게 되는거지? onIntroEnd()함수에는 Myapp()밖에 없던데
   final List<Feed> feedData = List.generate(
       feedLocation.length,
       (index) => Feed(
@@ -191,9 +193,9 @@ class _FeedPageState extends State<FeedPage> {
                             height: 36,
                           )),
                     ),
-                    Visibility(
+                    Visibility( //맨처음+날짜안바뀌는부분 빈곳 처리
                       visible: index == 0 ||
-                          feedData[index].date != feedData[index - 1].date,
+                          feedData[index].date != feedData[index - 1].date, //feedData로 처리
                       child: Padding(
                           padding: EdgeInsets.only(right: 20),
                           child: Text(feedData[index].date)),

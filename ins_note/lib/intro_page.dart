@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ins_note/server.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:textfield_tags/textfield_tags.dart';
@@ -67,9 +68,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     });
   }
 
+  //인트로끝나면서 피드페이지로 이동
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => MyApp()),
+      MaterialPageRoute(builder: (_) => MyApp()), //MyApp()페이지로 이동한다는 뜻 아닌가?
     );
   }
 
@@ -122,7 +124,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             '이제 한번 시작해 볼까요?',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
-          onPressed: () => _onIntroEnd(context),
+          // onPressed: () => fetchTodos(), //어디로 리턴하는거지? 위젯안의 변수에다가 return하게 하려면 어떻게 해야하지?
+          onPressed: () => _onIntroEnd(context), //onIntroEnd 페이지
         ),
       ),
       pages: [
