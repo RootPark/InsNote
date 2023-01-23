@@ -1,20 +1,33 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_naver_login (0.0.1):
+    - Flutter
+    - naveridlogin-sdk-ios (~> 4.1.0)
+  - naveridlogin-sdk-ios (4.1.5)
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_naver_login (from `.symlinks/plugins/flutter_naver_login/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+SPEC REPOS:
+  trunk:
+    - naveridlogin-sdk-ios
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_naver_login:
+    :path: ".symlinks/plugins/flutter_naver_login/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_naver_login: 1dbf6d21aae5235cdf76a28ac79cf6871899282f
+  naveridlogin-sdk-ios: 4351fe7162cd6b8b6dbb37bd7cc205304fa1d889
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
