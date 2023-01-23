@@ -20,6 +20,7 @@ class Feed {
       this.link_1,
       this.link_2,
       this.link_3});
+
   Feed.fromJson(Map<String, dynamic> json){
     id = json['id'];
     tagID = json['tagID'];
@@ -32,6 +33,7 @@ class Feed {
     link_2 = json['link_2'];
     link_3 = json['link_3'];
   }
+
   Map<String, dynamic> toJson(){
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
@@ -52,18 +54,59 @@ class Feed {
 class Tag{
   int? tagID;
   String? content;
+
+  //생성자 Q.중괄호는 왜 있는거지?
   Tag({
     this.tagID,
     this.content
   });
+
+  //fromJson메서드
   Tag.fromJson(Map<String, dynamic> json){
     tagID = json['tagID'];
     content = json['content'];
   }
+
+  //toJson메써드
   Map<String, dynamic> toJson(){
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['tagID'] = this.tagID;
     data['content'] = this.content;
+    return data;
+  }
+}
+
+//테스트 클래스
+class Todo{
+  int? userId;
+  int? id;
+  String? title;
+  bool? completed;
+
+  //생성자 Q.중괄호는 왜 있는거지?
+  Todo({
+    this.userId,
+    this.id,
+    this.title,
+    this.completed
+  });
+
+  //fromJson메서드
+  Todo.fromJson(Map<String, dynamic> json){
+    userId = json['userId'];
+    id = json['id'];
+    title = json['title'];
+    completed = json['completed'];
+  }
+
+  //toJson메써드
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['completed'] = this.completed;
+
     return data;
   }
 }

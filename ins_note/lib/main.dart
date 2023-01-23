@@ -38,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 
 }
 
+//Bottom Bar 관련
 class _MyHomePageState extends State<MyHomePage>{
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
 
@@ -55,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage>{
 
   int _selectedIndex = 0;
 
+  //자동으로 FeedPage()로 이동하는거같은데 default값으로
   final List<Widget> _widgetOptions = <Widget>[
     FeedPage(),
     MyPage(),

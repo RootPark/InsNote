@@ -12,25 +12,27 @@ const header = {
     "Access-Control-Allow-Credentials": true,
 };
 
+//AWS public IP
 const host = [
-    "https://34.221.63.195",
-    "https://34.221.63.195:443",
-    "http://34.221.63.195",
-    "http://34.221.63.195:443",
+    "https://3.34.143.144",
+    "https://3.34.143.144:443",
+    "http://3.34.143.144",
+    "http://3.34.143.144:443",
 ];
 
-router.get("/feed",  async (req, res, next) => {
+// /를 가지고 있고, 
+router.get("/feed", async (req, res, next) => {
     console.log(req.headers.origin);
     if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin;
 
     params.id = req.query.id;
-    let rows = await service.getFeed(params, res, next);
-    return res.header(header).json(rows);
+    let rows = await service.getFeed(params, res, next); //service모듈의 getFeed함수를 이용해서 DB쿼리날린후, 정보를 가져온다
+    return res.header(header).json(rows); //그걸 json으로 ~, response를 보낸다.
 });
 
-router.get("/tag",  async (req, res, next) => {
+router.get("/tag", async (req, res, next) => {
     console.log(req.headers.origin);
-    if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin;
+    if (host.includes(req.headers.origin)) header["Access-Control-Allow-Origin"] = req.headers.origin; //Q.이게 뭔지 파악
 
     params.id = req.query.id;
     let rows = await service.getTag(params, res, next);

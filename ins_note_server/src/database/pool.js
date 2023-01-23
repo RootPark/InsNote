@@ -1,12 +1,12 @@
-import { createPool } from "mysql2";
-import mysql from "mysql2/promise";
+import { createPool } from "mysql2"; 
+import mysql from "mysql2/promise"; 
 
-const pool = mysql.createPool({
+const pool = mysql.createPool({ 
     host: "localhost",
     port: 3306,
-    user: " ",
-    password: " ", //mysql 설치시 설정했던 비번
+    user: "root",
+    password: "rmsdnjsWkd@@1212", //mysql 설치시 설정했던 비번
     database: "insnote", // db 이름
 });
 
-export default pool;
+export default pool; 
