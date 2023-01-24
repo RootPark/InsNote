@@ -107,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage>{
             Padding(
               //TODO fix taglist error
                 padding:EdgeInsets.zero
-
             ),
             Padding(
               child:
