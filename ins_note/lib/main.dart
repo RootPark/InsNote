@@ -133,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage>{
                   }
                   return null;
                 },
+                //value 가 key word 데이터
                 onFieldSubmitted: (value){
                   print('submitted:$value');
                 },
@@ -162,12 +163,21 @@ class _MyHomePageState extends State<MyHomePage>{
                   }
                   return null;
                 },
+                //value가 detail note 데이터
                 onFieldSubmitted: (value){
                   print('submitted:$value');
                 },
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             ),
+            Padding(
+              child: MaterialButton(
+                child: Text("Add"),
+                color: Colors.amber,
+                onPressed: ()=>onBtnClick(),
+              ),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            )
           ],
         ),
         items: const [
@@ -177,6 +187,10 @@ class _MyHomePageState extends State<MyHomePage>{
       ),
     );
   }
+}
+
+void onBtnClick(){
+
 }
 
 class User {
