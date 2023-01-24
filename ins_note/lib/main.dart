@@ -7,7 +7,9 @@ import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
 // import 'package:filter_list/filter_list.dart';
 
-bool isPressed = false;
+bool isPressed1 = false;
+bool isPressed2 = false;
+bool isPressed3 = false;
 
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
@@ -114,9 +116,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: ElevatedButton(
                             child: Text('test'),
                             onPressed: () =>
-                                setState(() => isPressed = !isPressed),
+                                setState(() => isPressed1 = !isPressed1),
                             style: ElevatedButton.styleFrom(
-                                primary: isPressed ? Colors.red : Colors.green,
+                                primary: isPressed1
+                                    ? Colors.lightGreen
+                                    : Colors.green,
                                 shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0))))),
@@ -124,9 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
                           child: Text('test'),
-                          onPressed: () {},
+                          onPressed: () =>
+                              setState(() => isPressed2 = !isPressed2),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
+                              primary:
+                                  isPressed2 ? Colors.lightBlue : Colors.blue,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(10.0))),
@@ -135,9 +141,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
                           child: Text('test'),
-                          onPressed: () {},
+                          onPressed: () =>
+                              setState(() => isPressed3 = !isPressed3),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.yellow,
+                              primary: isPressed3 ? Colors.grey : Colors.black,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
                                       new BorderRadius.circular(10.0))),
