@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+import 'package:ins_note/model.dart';
 import 'intro_page.dart';
 import 'my_page.dart';
 import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
+import 'package:ins_note/server.dart';
 // import 'package:filter_list/filter_list.dart';
 
 bool isPressed1 = false;
 bool isPressed2 = false;
 bool isPressed3 = false;
+bool isPressed4 = false;
+bool isPressed5 = false;
+
+
 String keyWord = '';
 String detail = '';
 
@@ -117,41 +123,67 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                            child: Text('test'),
+                            child: Text('공상'),
                             onPressed: () =>
                                 setState(() => isPressed1 = !isPressed1),
                             style: ElevatedButton.styleFrom(
                                 primary: isPressed1
-                                    ? Colors.lightGreen
-                                    : Colors.green,
+                                    ? Colors.grey
+                                    : Colors.redAccent,
                                 shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0))))),
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                          child: Text('test'),
+                          child: Text('학업'),
                           onPressed: () =>
                               setState(() => isPressed2 = !isPressed2),
                           style: ElevatedButton.styleFrom(
                               primary:
-                                  isPressed2 ? Colors.lightBlue : Colors.blue,
+                                  isPressed2 ? Colors.grey : Colors.blue,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                      new BorderRadius.circular(10.0))),
-                        )),
+                                      new BorderRadius.circular(10.0))),)),
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
-                          child: Text('test'),
+                          child: Text('가치관'),
                           onPressed: () =>
                               setState(() => isPressed3 = !isPressed3),
                           style: ElevatedButton.styleFrom(
-                              primary: isPressed3 ? Colors.grey : Colors.black,
+                              primary:
+                              isPressed3 ? Colors.grey : Colors.amber,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                      new BorderRadius.circular(10.0))),
-                        )),
+                                  new BorderRadius.circular(10.0))),)),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('창업'),
+                          onPressed: () =>
+                              setState(() => isPressed4 = !isPressed4),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                              isPressed4 ? Colors.grey : Colors.deepPurple,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                  new BorderRadius.circular(10.0))),)),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('창업'),
+                          onPressed: () =>
+                              setState(() => isPressed5 = !isPressed5),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                              isPressed5 ? Colors.grey : Colors.purpleAccent,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                  new BorderRadius.circular(10.0))),)),
+
+
+
                   ],
                 ),
                 padding: EdgeInsets.zero),
@@ -229,8 +261,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     print(isPressed1);
                     print(isPressed2);
                     print(isPressed3);
+                    print(isPressed4);
+                    print(isPressed4);
+
+
+
                     print(keyWord);
                     print(detail);
+                    Feed feed = new Feed.cons(keyWord,detail);
+                    postFeed(feed);
                   }
                 },
                     //()=>onBtnClick(),
