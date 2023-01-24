@@ -24,7 +24,8 @@ class Feed {
       this.link_3
     }
     );
-  Feed.cons(keyword,detail){
+  Feed.cons(tagID,keyword,detail){
+    this.tagID = tagID;
     this.keyword = keyword;
     this.detail = detail;
   }

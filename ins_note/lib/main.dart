@@ -14,6 +14,7 @@ bool isPressed2 = false;
 bool isPressed3 = false;
 bool isPressed4 = false;
 bool isPressed5 = false;
+int tagNum = 0;
 
 
 String keyWord = '';
@@ -264,15 +265,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     print(isPressed4);
                     print(isPressed4);
 
-
+                    if(isPressed1){
+                      tagNum = 1;
+                    }else if(isPressed2){
+                      tagNum = 2;
+                    }else if(isPressed3){
+                      tagNum = 3;
+                    }else if(isPressed4){
+                      tagNum = 4;
+                    }else if(isPressed5){
+                      tagNum = 5;
+                    }
 
                     print(keyWord);
                     print(detail);
-                    Feed feed = new Feed.cons(keyWord,detail);
+
+                    Feed feed = new Feed.cons(tagNum,keyWord,detail);
                     postFeed(feed);
                   }
                 },
-                    //()=>onBtnClick(),
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             )
