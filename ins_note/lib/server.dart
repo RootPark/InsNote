@@ -37,8 +37,6 @@ Future<List<Feed>> getAllFeeds() async {
 }
 
 void postFeed(Feed feed) async {
-  var body = json.encode(feed);
-  print(body);
   String url = "http://13.125.106.51:8080/feed";
   final response =
       // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos'));
