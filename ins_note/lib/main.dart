@@ -10,7 +10,8 @@ import 'package:flutter/services.dart';
 bool isPressed1 = false;
 bool isPressed2 = false;
 bool isPressed3 = false;
-
+String keyWord = '';
+String detail = '';
 
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
@@ -43,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 //Bottom Bar 관련
 class _MyHomePageState extends State<MyHomePage> {
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
-
+  final _formKey = GlobalKey<FormState>();
   List<User>? selectedUserList = [];
 
   @override
@@ -81,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Inspiriation Note'),
       ),
       resizeToAvoidBottomInset: false, //keyboard control
-      body: SafeArea(
+      body: Form(
+        key: _formKey,
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomBarWithSheet(
@@ -155,6 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.zero),
             Padding(
               child: TextFormField(
+                autovalidateMode: AutovalidateMode.always,
                 maxLines: 1,
                 maxLength: 30,
                 decoration: const InputDecoration(
@@ -166,7 +169,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderSide: BorderSide(color: Colors.black),
                     )),
                 onSaved: (value) {
-                  print("Key world onSaved:$value");
+                  setState((){
+                    keyWord = value as String;
+                  });
                 },
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -177,14 +182,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 //value 가 key word 데이터
                 onFieldSubmitted: (value) {
-                  print('submitted:$value');
+                  setState(() {
+                    keyWord = value as String;
+                  });
                 },
               ),
               padding: EdgeInsets.zero,
             ),
             Padding(
               child: TextFormField(
-                maxLines: 5,
+                autovalidateMode: AutovalidateMode.always,
+                maxLines: 1,
                 maxLength: 100,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.notes_outlined),
@@ -205,16 +213,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 //value가 detail note 데이터
                 onFieldSubmitted: (value){
-                  print('submitted:$value');
+                  setState(() {
+                    detail = value as String;
+                  });
                 },
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             ),
             Padding(
-              child: MaterialButton(
+              child: ElevatedButton(
                 child: Text("Add"),
-                color: Colors.amber,
-                onPressed: ()=>onBtnClick(),
+                onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    _formKey.currentState!.save();
+                    print(isPressed1);
+                    print(isPressed2);
+                    print(isPressed3);
+                    print(keyWord);
+                    print(detail);
+                  }
+                },
+                    //()=>onBtnClick(),
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             )
@@ -227,10 +246,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-void onBtnClick(){
-
 }
 
 class User {
