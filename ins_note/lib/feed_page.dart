@@ -51,6 +51,10 @@ class _FeedPageState extends State<FeedPage> {
   //어떤 부분때문에 피드페이지로 이동하게 되는거지? onIntroEnd()함수에는 Myapp()밖에 없던데
 
   Widget linkImageButton(link) {
+    if (link == null) {
+      return Text("error");
+    }
+
     if (link.contains('youtu.be')) {
       return InkWell(
           child: Padding(
@@ -137,11 +141,13 @@ class _FeedPageState extends State<FeedPage> {
         body: ListView.builder(
             itemCount: listLength,
             itemBuilder: (context, index) {
+              print("here?");
               return _getFeeds(index);
             }));
   }
 
   Widget _getFeeds(index) {
+    print("here");
     return FutureBuilder<List<Feed>>(
         future: tmp,
         builder: (context, snapshot) {
