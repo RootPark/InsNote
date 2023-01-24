@@ -39,11 +39,9 @@ Future<List<Feed>> getAllFeeds() async {
 Future<List<Feed>> postFeed(Feed feed) async {
   var body = json.encode(feed);
   print(body);
-  String url = "http://13.125.106.51:8080/feed";
+  var url = Uri.parse('http://13.125.106.51:8080/feed');
   final response =
-  // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos'));
-  // 서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
-  await http.post(Uri.parse(url),
+  await http.post(url,
   body: body
   ); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
 
