@@ -6,7 +6,6 @@ import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
 
-
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
 
