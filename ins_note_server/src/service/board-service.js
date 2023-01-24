@@ -14,8 +14,6 @@ const service = {
     }
 
 
-
-
     getTag: async (req, res, next) => {
         let result = await pool.query(query.getTag, [req.id]);
         console.log(result[0])

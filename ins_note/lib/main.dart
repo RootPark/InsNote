@@ -5,6 +5,12 @@ import 'my_page.dart';
 import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
+// import 'package:filter_list/filter_list.dart';
+
+bool isPressed1 = false;
+bool isPressed2 = false;
+bool isPressed3 = false;
+
 
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
@@ -23,7 +29,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(),
-
     );
   }
 }
@@ -33,17 +38,16 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-
 }
 
 //Bottom Bar 관련
-class _MyHomePageState extends State<MyHomePage>{
+class _MyHomePageState extends State<MyHomePage> {
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
 
   List<User>? selectedUserList = [];
 
   @override
-  void initState(){
+  void initState() {
     _bottomBarController.stream.listen((opened) {
       debugPrint('Bottom bar ${opened ? 'opened' : 'closed'}');
     });
@@ -76,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage>{
         automaticallyImplyLeading: false,
         title: Text('Inspiriation Note'),
       ),
-      resizeToAvoidBottomInset: false,//keyboard control
+      resizeToAvoidBottomInset: false, //keyboard control
       body: SafeArea(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -105,12 +109,52 @@ class _MyHomePageState extends State<MyHomePage>{
         sheetChild: Column(
           children: <Widget>[
             Padding(
-              //TODO fix taglist error
-                padding:EdgeInsets.zero
-            ),
+                //TODO fix taglist error
+                child: Row(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                            child: Text('test'),
+                            onPressed: () =>
+                                setState(() => isPressed1 = !isPressed1),
+                            style: ElevatedButton.styleFrom(
+                                primary: isPressed1
+                                    ? Colors.lightGreen
+                                    : Colors.green,
+                                shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(10.0))))),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('test'),
+                          onPressed: () =>
+                              setState(() => isPressed2 = !isPressed2),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                                  isPressed2 ? Colors.lightBlue : Colors.blue,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(10.0))),
+                        )),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('test'),
+                          onPressed: () =>
+                              setState(() => isPressed3 = !isPressed3),
+                          style: ElevatedButton.styleFrom(
+                              primary: isPressed3 ? Colors.grey : Colors.black,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(10.0))),
+                        )),
+                  ],
+                ),
+                padding: EdgeInsets.zero),
             Padding(
-              child:
-              TextFormField(
+              child: TextFormField(
                 maxLines: 1,
                 maxLength: 30,
                 decoration: const InputDecoration(
@@ -120,27 +164,26 @@ class _MyHomePageState extends State<MyHomePage>{
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
-                    )
-                ),
-                onSaved: (value){
+                    )),
+                onSaved: (value) {
                   print("Key world onSaved:$value");
                 },
-                validator: (value){
-                  if(value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please enter some Key word";
                   }
                   return null;
                 },
+
                 //value 가 key word 데이터
-                onFieldSubmitted: (value){
+                onFieldSubmitted: (value) {
                   print('submitted:$value');
                 },
               ),
               padding: EdgeInsets.zero,
             ),
             Padding(
-              child:
-              TextFormField(
+              child: TextFormField(
                 maxLines: 5,
                 maxLength: 100,
                 decoration: const InputDecoration(
@@ -150,13 +193,12 @@ class _MyHomePageState extends State<MyHomePage>{
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
-                    )
-                ),
-                onSaved: (value){
+                    )),
+                onSaved: (value) {
                   print("Detail Note onSaved:$value");
                 },
-                validator: (value){
-                  if(value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please enter some Detail note";
                   }
                   return null;
