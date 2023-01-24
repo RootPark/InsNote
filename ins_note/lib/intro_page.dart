@@ -73,7 +73,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   //인트로끝나면서 피드페이지로 이동
   void _onIntroEnd(context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => MyApp()), //MyApp()페이지로 이동한다는 뜻 아닌가?
+      MaterialPageRoute(builder: (_) => MyApp()), //MyApp()페이지로 이동
     );
   }
 
@@ -126,15 +126,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             '이제 한번 시작해 볼까요?',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
-            onPressed: () async {
-              List<Feed> feed_list = await fetchFeeds();
-              // List<Tag> tag_list = await fetchTags(); //1.28 - 0912 현재 작동X
-              print(feed_list[0].id);
-              print(feed_list[0].tagID);
-              print(feed_list[0].keyword);
-
-            },
-          // onPressed: () => _onIntroEnd(context), //기존 코드
+            // onPressed: () async {
+            //   List<Feed> feed_list = await fetchFeeds();
+            //   List<Tag> tag_list = await fetchTags();
+            //   print(feed_list[0].id);
+            //   print(feed_list[0].tagID);
+            //   print(feed_list[0].keyword);
+            // },
+          onPressed: () => _onIntroEnd(context), //기존 코드
         ),
       ),
       pages: [
