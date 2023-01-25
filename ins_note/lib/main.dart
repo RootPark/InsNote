@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
-import 'package:ins_note/login_page.dart';
+
+import 'package:ins_note/model.dart';
 import 'intro_page.dart';
 import 'my_page.dart';
 import 'feed_page.dart';
 import 'package:material_tag_editor/tag_editor.dart';
 import 'package:flutter/services.dart';
-import 'package:filter_list/filter_list.dart';
+import 'package:ins_note/server.dart';
+// import 'package:filter_list/filter_list.dart';
 
+bool isPressed1 = false;
+bool isPressed2 = false;
+bool isPressed3 = false;
+bool isPressed4 = false;
+bool isPressed5 = false;
+
+
+String keyWord = '';
+String detail = '';
 
 void main() => runApp(Intro());
 //late ScrollController _scrollController;
@@ -26,7 +37,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(),
-
     );
   }
 }
@@ -36,17 +46,16 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
-
 }
 
 //Bottom Bar 관련
-class _MyHomePageState extends State<MyHomePage>{
+class _MyHomePageState extends State<MyHomePage> {
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
-
+  final _formKey = GlobalKey<FormState>();
   List<User>? selectedUserList = [];
 
   @override
-  void initState(){
+  void initState() {
     _bottomBarController.stream.listen((opened) {
       debugPrint('Bottom bar ${opened ? 'opened' : 'closed'}');
     });
@@ -79,8 +88,9 @@ class _MyHomePageState extends State<MyHomePage>{
         automaticallyImplyLeading: false,
         title: Text('Inspiriation Note'),
       ),
-      resizeToAvoidBottomInset: false,//keyboard control
-      body: SafeArea(
+      resizeToAvoidBottomInset: false, //keyboard control
+      body: Form(
+        key: _formKey,
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomBarWithSheet(
@@ -108,47 +118,79 @@ class _MyHomePageState extends State<MyHomePage>{
         sheetChild: Column(
           children: <Widget>[
             Padding(
-              //TODO fix taglist error
-                child: FilterListWidget<User>(
-                  themeData: FilterListThemeData(context),
-                  hideSelectedTextCount: true,
-                  listData: userList,
-                  selectedListData: selectedUserList,
-                  onApplyButtonClick: (list) {
-                    Navigator.pop(context, list);
-                  },
-                  choiceChipLabel: (item) {
-                    /// Used to print text on chip
-                    return item!.name;
-                  },
-                  // choiceChipBuilder: (context, item, isSelected) {
-                  //   return Container(
-                  //     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  //     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  //     decoration: BoxDecoration(
-                  //         border: Border.all(
-                  //       color: isSelected! ? Colors.blue[300]! : Colors.grey[300]!,
-                  //     )),
-                  //     child: Text(item.name),
-                  //   );
-                  // },
-                  validateSelectedItem: (list, val) {
-                    ///  identify if item is selected or not
-                    return list!.contains(val);
-                  },
-                  onItemSearch: (user, query) {
-                    /// When search query change in search bar then this method will be called
-                    ///
-                    /// Check if items contains query
-                    return user.name!.toLowerCase().contains(query.toLowerCase());
-                  },
-                ),
-                padding:EdgeInsets.zero
+                //TODO fix taglist error
+                child: Row(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                            child: Text('공상'),
+                            onPressed: () =>
+                                setState(() => isPressed1 = !isPressed1),
+                            style: ElevatedButton.styleFrom(
+                                primary: isPressed1
+                                    ? Colors.grey
+                                    : Colors.redAccent,
+                                shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(10.0))))),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('학업'),
+                          onPressed: () =>
+                              setState(() => isPressed2 = !isPressed2),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                                  isPressed2 ? Colors.grey : Colors.blue,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                      new BorderRadius.circular(10.0))),)),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('가치관'),
+                          onPressed: () =>
+                              setState(() => isPressed3 = !isPressed3),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                              isPressed3 ? Colors.grey : Colors.amber,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                  new BorderRadius.circular(10.0))),)),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('창업'),
+                          onPressed: () =>
+                              setState(() => isPressed4 = !isPressed4),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                              isPressed4 ? Colors.grey : Colors.deepPurple,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                  new BorderRadius.circular(10.0))),)),
+                    Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: ElevatedButton(
+                          child: Text('창업'),
+                          onPressed: () =>
+                              setState(() => isPressed5 = !isPressed5),
+                          style: ElevatedButton.styleFrom(
+                              primary:
+                              isPressed5 ? Colors.grey : Colors.purpleAccent,
+                              shape: new RoundedRectangleBorder(
+                                  borderRadius:
+                                  new BorderRadius.circular(10.0))),)),
 
-            ),
+
+
+                  ],
+                ),
+                padding: EdgeInsets.zero),
             Padding(
-              child:
-              TextFormField(
+              child: TextFormField(
+                autovalidateMode: AutovalidateMode.always,
                 maxLines: 1,
                 maxLength: 30,
                 decoration: const InputDecoration(
@@ -158,27 +200,32 @@ class _MyHomePageState extends State<MyHomePage>{
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
-                    )
-                ),
-                onSaved: (value){
-                  print("Key world onSaved:$value");
+                    )),
+                onSaved: (value) {
+                  setState((){
+                    keyWord = value as String;
+                  });
                 },
-                validator: (value){
-                  if(value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please enter some Key word";
                   }
                   return null;
                 },
-                onFieldSubmitted: (value){
-                  print('submitted:$value');
+
+                //value 가 key word 데이터
+                onFieldSubmitted: (value) {
+                  setState(() {
+                    keyWord = value as String;
+                  });
                 },
               ),
               padding: EdgeInsets.zero,
             ),
             Padding(
-              child:
-              TextFormField(
-                maxLines: 5,
+              child: TextFormField(
+                autovalidateMode: AutovalidateMode.always,
+                maxLines: 1,
                 maxLength: 100,
                 decoration: const InputDecoration(
                     icon: Icon(Icons.notes_outlined),
@@ -187,23 +234,49 @@ class _MyHomePageState extends State<MyHomePage>{
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: BorderSide(color: Colors.black),
-                    )
-                ),
-                onSaved: (value){
+                    )),
+                onSaved: (value) {
                   print("Detail Note onSaved:$value");
                 },
-                validator: (value){
-                  if(value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return "Please enter some Detail note";
                   }
                   return null;
                 },
+                //value가 detail note 데이터
                 onFieldSubmitted: (value){
-                  print('submitted:$value');
+                  setState(() {
+                    detail = value as String;
+                  });
                 },
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             ),
+            Padding(
+              child: ElevatedButton(
+                child: Text("Add"),
+                onPressed: (){
+                  if(_formKey.currentState!.validate()){
+                    _formKey.currentState!.save();
+                    print(isPressed1);
+                    print(isPressed2);
+                    print(isPressed3);
+                    print(isPressed4);
+                    print(isPressed4);
+
+
+
+                    print(keyWord);
+                    print(detail);
+                    Feed feed = new Feed.cons(keyWord,detail);
+                    postFeed(feed);
+                  }
+                },
+                    //()=>onBtnClick(),
+              ),
+              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            )
           ],
         ),
         items: const [

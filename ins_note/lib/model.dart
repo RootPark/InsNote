@@ -9,8 +9,10 @@ class Feed {
   String? link_1;
   String? link_2;
   String? link_3;
+
   Feed(
-    {this.id,
+    {
+      this.id,
       this.tagID,
       this.keyword,
       this.detail,
@@ -19,7 +21,15 @@ class Feed {
       this.alarm,
       this.link_1,
       this.link_2,
-      this.link_3});
+      this.link_3
+    }
+    );
+  Feed.cons(keyword,detail){
+    this.keyword = keyword;
+    this.detail = detail;
+  }
+
+
 
   Feed.fromJson(Map<String, dynamic> json){
     id = json['id'];
