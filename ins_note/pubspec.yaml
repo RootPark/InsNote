@@ -43,6 +43,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   introduction_screen: ^3.0.2
   flutter_naver_login: ^1.7.0
+  in_app_review: ^2.0.6
 
 dev_dependencies:
   flutter_test:

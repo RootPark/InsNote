@@ -25,30 +25,28 @@ class _FeedPageState extends State<FeedPage> {
     tmp = getAllFeeds();
   }
 
-  Future<List<Feed>> getAllFeeds() async {
-    List<Feed> list = [];
-    final response =
-        // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
-        await http.get(Uri.parse(
-            'http://13.125.106.51:8080/feed/list')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
-    if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+  // Future<List<Feed>> getAllFeeds() async {
+  //   List<Feed> list = [];
+  //   final response =
+  //       // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
+  //       await http.get(Uri.parse(
+  //           'http://13.125.106.51:8080/feed/list')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
+  //   if (response.statusCode == 200) {
+  //     print('Response status: ${response.statusCode}');
+  //     print('Response body: ${response.body}');
+  //
+  //     list = (jsonDecode(response.body) as List)
+  //         .map((e) => Feed.fromJson(e))
+  //         .toList();
+  //
+  //     listLength = list.length;
+  //
+  //     return list;
+  //   } else {
+  //     throw Exception('Failed to load album');
+  //   }
+  // }
 
-      list = (jsonDecode(response.body) as List)
-          .map((e) => Feed.fromJson(e))
-          .toList();
-
-      listLength = list.length;
-
-      return list;
-    } else {
-      throw Exception('Failed to load album');
-    }
-  }
-
-  //여기에서 바로 보여줄려면, _onIntroEnd()함수의 navigator를 통해서 피드페이지로 이동
-  //어떤 부분때문에 피드페이지로 이동하게 되는거지? onIntroEnd()함수에는 Myapp()밖에 없던데
 
   Widget linkImageButton(link) {
     if (link.contains('youtu.be')) {
