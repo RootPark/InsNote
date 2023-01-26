@@ -153,6 +153,14 @@ class _FeedPageState extends State<FeedPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final item = snapshot.data![index];
+            String location = "";
+            String link_1 = "";
+            String link_2 = "";
+            String link_3 = "";
+            if (item.location != null) location = item.location!;
+            if (item.link_1 != null) link_1 = item.link_1!;
+            if (item.link_2 != null) link_1 = item.link_2!;
+            if (item.link_3 != null) link_1 = item.link_3!;
             print(item.date);
 
             return Column(
@@ -195,7 +203,7 @@ class _FeedPageState extends State<FeedPage> {
                                         color: Colors.grey,
                                       ),
                                       Text(
-                                        item.location!,
+                                        location,
                                         style: TextStyle(
                                             color: Colors.grey, fontSize: 13),
                                       )
@@ -204,13 +212,13 @@ class _FeedPageState extends State<FeedPage> {
                                   Row(
                                     children: [
                                       Visibility(
-                                          visible: item.link_1 != "",
+                                          visible: item.link_1 != null,
                                           child: linkImageButton(item.link_1)),
                                       Visibility(
-                                          visible: item.link_2 != "",
+                                          visible: item.link_2 != null,
                                           child: linkImageButton(item.link_2)),
                                       Visibility(
-                                          visible: item.link_3 != "",
+                                          visible: item.link_3 != null,
                                           child: linkImageButton(item.link_3))
                                     ],
                                   )
@@ -222,7 +230,7 @@ class _FeedPageState extends State<FeedPage> {
               ],
             );
           } else {
-            print("none");
+            print("none no ever never");
             return Text("Error");
           }
         });
