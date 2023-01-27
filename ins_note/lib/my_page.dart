@@ -13,6 +13,7 @@ class MyPage extends StatelessWidget {
     {"title": "앱 활용 팁", "icon": CupertinoIcons.question_circle},
     {"title": "App Store 평가", "icon": CupertinoIcons.hand_thumbsup_fill},
     {"title": "버전 정보", "icon": Icons.note, "version": "1.0.0 v"},
+    {"title": "Designed by"},
   ];
 
   @override
@@ -25,33 +26,31 @@ class MyPage extends StatelessWidget {
               itemCount: _items.length,
               itemBuilder: (context, index) {
                 var item = _items[index];
-                return Card(
-                  child: ListTile(
-                    leading: Icon(item["icon"] as IconData, size: 25.0),
-                    title: Text(item["title"] as String),
-                    trailing: item.containsKey("version") ? Text(item["version"] as String) : null,
-                    onTap: (){
-                      if(item["title"] == "고객 문의"){
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => CustomerContact()),
-                        );
-                      }else if(item["title"] == "앱 활용 팁"){
-                        _launchUrl();
-                      }
+                if(item["title"] != "Designed by"){
+                  return Card(
+                    child: ListTile(
+                        leading: Icon(item["icon"] as IconData, size: 25.0),
+                        title: Text(item["title"] as String),
+                        trailing: item.containsKey("version") ? Text(item["version"] as String) : null,
+                        onTap: (){
+                          if(item["title"] == "고객 문의"){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => CustomerContact()),
+                            );
+                          }else if(item["title"] == "앱 활용 팁"){
+                            _launchUrl();
+                          }
 
-                    }
-                  ),
-                );
+                        }
+                    ),
+                  );
+                }else{
+                  return ListTile(
+                    leading: Text("Designed by 영감일기팀 in Seoul")
+                  );
+                }
+
               },
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomRight,
-            margin: EdgeInsets.all(0),
-            child: Positioned(
-              right: 0,
-              bottom: 0,
-              child: Text("Designed by 영감일기팀 in Seoul"),
             ),
           ),
         ],
