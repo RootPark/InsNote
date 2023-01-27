@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<List<Feed>> tmp = [] as Future<List<Feed>>;
+Future<List<Feed>> feedList = [] as Future<List<Feed>>;
+List<Feed> tmp = [];
 int listLength = 0;
 
 class FeedPage extends StatefulWidget {
@@ -22,9 +23,12 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
+    getAllFeeds().then((value) {
+      tmp = value;
+      print(value);
+    });
     super.initState();
-    tmp = getAllFeeds();
-    print(tmp);
+    // print(tmp);
   }
 
   Future<List<Feed>> getAllFeeds() async {
@@ -136,7 +140,10 @@ class _FeedPageState extends State<FeedPage> {
 
   Future<void> _onRefresh() {
     setState(() {
-      tmp = getAllFeeds();
+      getAllFeeds().then((value) {
+        tmp = value;
+        // feedData
+      });
       print("refresh");
       print(tmp);
     });
@@ -160,7 +167,7 @@ class _FeedPageState extends State<FeedPage> {
   Widget _getFeeds(index) {
     // print("here2");
     return FutureBuilder<List<Feed>>(
-        future: tmp,
+        future: feedList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final item = snapshot.data![index];

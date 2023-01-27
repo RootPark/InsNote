@@ -16,7 +16,6 @@ bool isPressed3 = false;
 bool isPressed4 = false;
 bool isPressed5 = false;
 
-
 String keyWord = '';
 String detail = '';
 
@@ -128,9 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () =>
                                 setState(() => isPressed1 = !isPressed1),
                             style: ElevatedButton.styleFrom(
-                                primary: isPressed1
-                                    ? Colors.grey
-                                    : Colors.redAccent,
+                                primary:
+                                    isPressed1 ? Colors.grey : Colors.redAccent,
                                 shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0))))),
@@ -141,11 +139,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () =>
                               setState(() => isPressed2 = !isPressed2),
                           style: ElevatedButton.styleFrom(
-                              primary:
-                                  isPressed2 ? Colors.grey : Colors.blue,
+                              primary: isPressed2 ? Colors.grey : Colors.blue,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                      new BorderRadius.circular(10.0))),)),
+                                      new BorderRadius.circular(10.0))),
+                        )),
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
@@ -153,11 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () =>
                               setState(() => isPressed3 = !isPressed3),
                           style: ElevatedButton.styleFrom(
-                              primary:
-                              isPressed3 ? Colors.grey : Colors.amber,
+                              primary: isPressed3 ? Colors.grey : Colors.amber,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                  new BorderRadius.circular(10.0))),)),
+                                      new BorderRadius.circular(10.0))),
+                        )),
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
@@ -166,10 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               setState(() => isPressed4 = !isPressed4),
                           style: ElevatedButton.styleFrom(
                               primary:
-                              isPressed4 ? Colors.grey : Colors.deepPurple,
+                                  isPressed4 ? Colors.grey : Colors.deepPurple,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                  new BorderRadius.circular(10.0))),)),
+                                      new BorderRadius.circular(10.0))),
+                        )),
                     Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ElevatedButton(
@@ -177,14 +176,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () =>
                               setState(() => isPressed5 = !isPressed5),
                           style: ElevatedButton.styleFrom(
-                              primary:
-                              isPressed5 ? Colors.grey : Colors.purpleAccent,
+                              primary: isPressed5
+                                  ? Colors.grey
+                                  : Colors.purpleAccent,
                               shape: new RoundedRectangleBorder(
                                   borderRadius:
-                                  new BorderRadius.circular(10.0))),)),
-
-
-
+                                      new BorderRadius.circular(10.0))),
+                        )),
                   ],
                 ),
                 padding: EdgeInsets.zero),
@@ -202,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderSide: BorderSide(color: Colors.black),
                     )),
                 onSaved: (value) {
-                  setState((){
+                  setState(() {
                     keyWord = value as String;
                   });
                 },
@@ -245,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return null;
                 },
                 //value가 detail note 데이터
-                onFieldSubmitted: (value){
+                onFieldSubmitted: (value) {
                   setState(() {
                     detail = value as String;
                   });
@@ -255,9 +253,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               child: ElevatedButton(
+                // statesController: _bottomBarController,
                 child: Text("Add"),
-                onPressed: (){
-                  if(_formKey.currentState!.validate()){
+                onPressed: () {
+                  // (index) => _onItemTapped(index);
+                  if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     print(isPressed1);
                     print(isPressed2);
@@ -265,15 +265,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     print(isPressed4);
                     print(isPressed4);
 
-
-
                     print(keyWord);
                     print(detail);
-                    Feed feed = new Feed.cons(keyWord,detail);
+                    Feed feed = new Feed.cons(keyWord, detail);
                     postFeed(feed);
                   }
                 },
-                    //()=>onBtnClick(),
+                //()=>onBtnClick(),
               ),
               padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
             )
