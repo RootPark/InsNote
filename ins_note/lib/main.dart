@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
+
 import 'package:ins_note/model.dart';
 import 'intro_page.dart';
 import 'my_page.dart';

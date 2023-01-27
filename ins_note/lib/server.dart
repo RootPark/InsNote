@@ -55,3 +55,4 @@ void postFeed(Feed feed) async {
     throw Exception('Failed to load album');
   }
 }
+

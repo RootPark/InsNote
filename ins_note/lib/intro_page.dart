@@ -126,15 +126,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             '이제 한번 시작해 볼까요?',
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
-            onPressed: () async {
-              List<Feed> feed = await fetchFeeds();
-              print(feed[0].id);
-              print(feed[0].tagID);
-              print(feed[0].keyword);
-
-            }, //어디로 리턴하는거지? 위젯안의 변수에다가 return하게 하려면 어떻게 해야하지?
-          // onPressed: () => fetchTodos(), //
-          // onPressed: () => _onIntroEnd(context), //기존 코드
+            // onPressed: () async {
+            //   List<Feed> feed = await fetchFeeds();
+            //   print(feed[0].id);
+            //   print(feed[0].tagID);
+            //   print(feed[0].keyword);
+            //
+            // },
+          onPressed: () => _onIntroEnd(context), //기존 코드
         ),
       ),
       pages: [
