@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '/model.dart';
 // import '/server.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -23,6 +24,7 @@ class _FeedPageState extends State<FeedPage> {
   void initState() {
     super.initState();
     tmp = getAllFeeds();
+    print(tmp);
   }
 
   Future<List<Feed>> getAllFeeds() async {
@@ -32,8 +34,8 @@ class _FeedPageState extends State<FeedPage> {
         await http.get(Uri.parse(
             'http://13.125.106.51:8080/feed/list')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
 
       list = (jsonDecode(response.body) as List)
           .map((e) => Feed.fromJson(e))
@@ -132,20 +134,31 @@ class _FeedPageState extends State<FeedPage> {
     }
   }
 
+  Future<void> _onRefresh() {
+    setState(() {
+      tmp = getAllFeeds();
+      print("refresh");
+      print(tmp);
+    });
+    return Future<void>.value();
+  }
+
   @override
   Widget build(BuildContext context) {
-    print("here1");
+    // print("here1");
     return Scaffold(
-        body: ListView.builder(
-            itemCount: listLength,
-            itemBuilder: (context, index) {
-              print("here?");
-              return _getFeeds(index);
-            }));
+        body: RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: ListView.builder(
+                itemCount: listLength,
+                itemBuilder: (context, index) {
+                  // print("here?");
+                  return _getFeeds(index);
+                })));
   }
 
   Widget _getFeeds(index) {
-    print("here2");
+    // print("here2");
     return FutureBuilder<List<Feed>>(
         future: tmp,
         builder: (context, snapshot) {
