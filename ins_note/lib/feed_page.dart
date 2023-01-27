@@ -212,13 +212,13 @@ class _FeedPageState extends State<FeedPage> {
                                   Row(
                                     children: [
                                       Visibility(
-                                          visible: item.link_1 != null,
+                                          visible: link_1 != "",
                                           child: linkImageButton(item.link_1)),
                                       Visibility(
-                                          visible: item.link_2 != null,
+                                          visible: link_2 != "",
                                           child: linkImageButton(item.link_2)),
                                       Visibility(
-                                          visible: item.link_3 != null,
+                                          visible: link_3 != "",
                                           child: linkImageButton(item.link_3))
                                     ],
                                   )
