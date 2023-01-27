@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '/model.dart';
-import '/server.dart';
+// import '/server.dart';
 import 'dart:async';
 
 import 'package:http/http.dart' as http;
@@ -25,28 +25,27 @@ class _FeedPageState extends State<FeedPage> {
     tmp = getAllFeeds();
   }
 
-  // Future<List<Feed>> getAllFeeds() async {
-  //   List<Feed> list = [];
-  //   final response =
-  //       // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
-  //       await http.get(Uri.parse(
-  //           'http://13.125.106.51:8080/feed/list')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
-  //   if (response.statusCode == 200) {
-  //     print('Response status: ${response.statusCode}');
-  //     print('Response body: ${response.body}');
-  //
-  //     list = (jsonDecode(response.body) as List)
-  //         .map((e) => Feed.fromJson(e))
-  //         .toList();
-  //
-  //     listLength = list.length;
-  //
-  //     return list;
-  //   } else {
-  //     throw Exception('Failed to load album');
-  //   }
-  // }
+  Future<List<Feed>> getAllFeeds() async {
+    List<Feed> list = [];
+    final response =
+        // await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
+        await http.get(Uri.parse(
+            'http://13.125.106.51:8080/feed/list')); //서버 작동 가정 : "http or https://[AWS public IP]:[Port]/tag
+    if (response.statusCode == 200) {
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
 
+      list = (jsonDecode(response.body) as List)
+          .map((e) => Feed.fromJson(e))
+          .toList();
+
+      listLength = list.length;
+
+      return list;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
 
   Widget linkImageButton(link) {
     if (link == null) {
@@ -135,6 +134,7 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("here1");
     return Scaffold(
         body: ListView.builder(
             itemCount: listLength,
@@ -145,7 +145,7 @@ class _FeedPageState extends State<FeedPage> {
   }
 
   Widget _getFeeds(index) {
-    print("here");
+    print("here2");
     return FutureBuilder<List<Feed>>(
         future: tmp,
         builder: (context, snapshot) {
@@ -159,7 +159,7 @@ class _FeedPageState extends State<FeedPage> {
             if (item.link_1 != null) link_1 = item.link_1!;
             if (item.link_2 != null) link_1 = item.link_2!;
             if (item.link_3 != null) link_1 = item.link_3!;
-            print(item.date);
+            // print(item.date);
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -211,13 +211,13 @@ class _FeedPageState extends State<FeedPage> {
                                     children: [
                                       Visibility(
                                           visible: link_1 != "",
-                                          child: linkImageButton(item.link_1)),
+                                          child: linkImageButton(link_1)),
                                       Visibility(
                                           visible: link_2 != "",
-                                          child: linkImageButton(item.link_2)),
+                                          child: linkImageButton(link_2)),
                                       Visibility(
                                           visible: link_3 != "",
-                                          child: linkImageButton(item.link_3))
+                                          child: linkImageButton(link_3))
                                     ],
                                   )
                                 ],
